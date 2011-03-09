@@ -1,0 +1,20 @@
+Liebe APBC-ler/innen,
+
+Hier das zu loesende Uebungsbeispiel namens "Word Count":
+
+Schreibt ein Programm das einen Text ein lieszt und eine nach
+Frequenzen sortierte Liste der Worte ausgibt. Word Count ist in einer
+kompilierten (zB C, C++, Haskell, ...) und einer Scripting Sprache
+(zB Perl, Ruby, Python, Java, ...) zu implementieren.
+
+Um eure Loesungen ausenanderzuhalten, benahmst sie entsprechend (e.g. 
+   WordCount-xtof.pl fuer xtof's Perl Loesung)
+
+Tipps:
+======
+
+(1) Empfehlenswerte Datenstruktur:
+    (a) Hashtable in C, Perl, Ruby
+    (b) STL-Map in C++
+
+happy hacking

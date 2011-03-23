@@ -1,0 +1,60 @@
+Liebe APBC-ler/innen,
+
+Hier das zu loesende Uebungsbeispiel namens "Flucht aus Zurg":
+
+Die vier Spielzeuge aus Toy Story 2 (Buzz, Woody, Rex und Hamm) moechten
+aus Zurg fliehen. Um frei zu sein muessen sie noch eine letzte Bruecke
+uebergqueren. Die Bruecke ist aber baufaellig und kann allerhoechstens zwei
+Spielzeuge auf einmal tragen.
+
+Weiters wird zum Ueberqueren der Bruecke eine Taschenlampe benoetigt um
+vorhandenen Fallen und bruechigen Stellen ausweichen zu koennen. Die
+Spielzeuge besitzen jedoch genau eine Taschenlampe deren Batterie noch
+Strom fuer 60 Minuten liefert. Alle Spielzeuge benoetigen unterschiedlich
+lang um die Bruecke (in einer Richtung) zu ueberqueren (siehe untenstehende
+Tabelle).
+
+ Spielzeug | Zeit [Min]
+-----------------------
+ Buzz      |  5
+ Woody     | 10
+ Rex       | 20
+ Hamm      | 25
+-----------------------
+
+Nachdem immer nur zwei Spielzeuge gleichzeitig auf der Bruecke sein koennen
+ist die Moeglichkeit, dasz alle vier die Bruecke zusammen ueberqueren
+ausgeschlossen. Wenn immer zwei Spielzeuge die Bruecke ueberquert haben, musz
+ein Spielzeug wieder zurueckgehen um die Taschenlampe jenen Spielzeugen zu
+bringen, die die Bruecke noch ueberqueren muessen.
+
+Die Aufgabe besteht nun darin auszurechnen in welcher Reihenfolge die vier
+Spielzeuge die Bruecke ueberqueren muessen um rechtzeitig (in 60 Minuten) vor
+dem erloeschen der Taschenlampe aus Zurg zu entkommen.
+
+Tipps:
+=====
+
+(1) Es handelt sich bei der Aufgabe um ein Optimierungsproblem, bei dem
+    die optimale Loesung bekannt ist. Das legt als Loesungsstrategie eine
+    "branch-and-bound" Heuristik nahe.
+
+(2) Die Hauptelemente der Aufgabe sind:
+    (a) "States", welche zwischenzeitliche Etappen des Bruecke ueberquerens
+        beschreiben.
+    (b) Moves, welche Uebergaenge zwischen States beschreiben. 
+
+(3) Der Loesungsraum des Optimierungsproblems wird vollstaendig durch einen
+    Anfangs-State einen End-State sowie eine Funktion die den Uebergang
+    zwischen States beschreibt charakterisiert.
+   
+(4) Um den Loesungsraum von einem bestimmten State ausgehend aufzubauen wird
+    ein Funktion benoetigt die alle States berechnet die vom "current" State
+    aus erreicht werden koennen.
+    
+(5) Da man im allgemeinen aber nur ein Subset des Loesungsraums haben moechte,
+    naemlich all jene States die auf Pfade vom Anfangs-State zum End-State
+    liegen und <= 60 Minuten Gesammtzeit benoetigen, braucht man noch
+    ein Funktion die "Loesungen" die laenger waehren wegkuerzt.
+    
+happy hacking

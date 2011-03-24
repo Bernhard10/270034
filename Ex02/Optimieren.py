@@ -43,18 +43,35 @@ def grundstatus():
 
 def schreiten():
     global maxval
+
+    #Die Möglichkeit, der schnellste geht hin und her und nimmt alle mit, wird berechnet. Ist die Zeit kleiner maxval,
+    #so wird maxval neu gesetzt.
+    #Der Sinn ist, eine erste Abschätzung einer Obergrenze zu finden, falls keine sinnvolle angegeben.
+
+    v=(len(agenten)-1)*min(agenten.items())
+    for b in agenten.items():
+        v+=b
+    if v<maxval:
+        maxval=v
+
+    #### HAUPTSCHLEIFE
     i=0
     while i<len(status):
         if status[i][0]%2==0:
             hingehen(i)
         else:
             if status[i][1]==[]:
+                # Das Abbruchkriterium für ungünstige Pfade wird immer auf den aktuell günstigsten fertigen Pfad gesetzt.
+                if status[i][3]<maxval:
+                    maxval=status[i][3]
                 print str(status[i][3])+" Minuten:"
                 print status[i][4]
                 print "\n"
             else:
                 zurueckgehen(i)
         i+=1;
+    print "Anzahl ueberpruefter statusse:"
+    print i
     print "FERTIG"
 
 

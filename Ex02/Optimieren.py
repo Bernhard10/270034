@@ -6,6 +6,9 @@ from copy import deepcopy
 # Namen dürfen nicht doppelt vergeben werden, sonst wird nur der spätere behalten und der frühere überschrieben
 # Mit ["printall",1] werden alle gleich schnellen Permutationen ausgedruckt, sonst nur eine willkürliche davon
 # Alternativ kann ["flags",1] angegeben werden. Das spätere Argument überschreibt das vorherige!!!
+# Mit ["movefastestback",1] oder  indem man flags angibt und 2 zum Wert dazuzählt,kann man einstellen, dass automatisch immer der schnellste von rechts zurück geht.
+# Damit wird meistens trotzdem die beste Lösung gefunden. Ich glaube zwar, es wird immer die beste Lösung gefunden, kann es aber nicht beweisen, daher ist es optional
+
 
 agenten=dict() # Globales Dictionary agenten "deklarieren"
 status=[] #Eine Globale Liste status wird "deklariert"
@@ -62,6 +65,13 @@ def einlesen():
                 elif dauer==0:
                     if flags%2==1:
                         flags=flags-1
+            elif name.lower()=="movefastestback":
+                if dauer==1:
+                    if flags%4<2:
+                        flags=flags+2
+                elif dauer==0:
+                    if flags%4>=2:
+                        flags=flags-2
             elif name.lower()=="flags":
                 flags=dauer
             else:
@@ -193,23 +203,42 @@ def hingehen(statind):
 #Fuehrt alle möglichen Schritt vom status[statind] aus und erzeugt dadurch neue statusse.
 #Geht von rechts nach links!
 def zurueckgehen(statind):
-    for ag in status[statind][2]:
+    if flags%4<2:
+        for ag in status[statind][2]:
+            neustat=deepcopy(status[statind])
+            neustat[0]+=1
+            neustat[2].pop(neustat[2].index(ag))
+            neustat[1].append(ag)
+            neustat[3]+=agenten[ag]
+            neustat[4].append("<"+ag)
+            zuzeit=untere_schranke(neustat[1])
+            if neustat[3]+zuzeit<=maxval:
+                neuer_stat(neustat)
+            else:
+                pass
+    else:
+        time=2147483647
+        schn=""
+        for ag in status[statind][2]:
+            if agenten[ag]<time:
+                schn=ag
+                time=agenten[ag]
         neustat=deepcopy(status[statind])
         neustat[0]+=1
-        neustat[2].pop(neustat[2].index(ag))
-        neustat[1].append(ag)
-        neustat[3]+=agenten[ag]
-        neustat[4].append("<"+ag)
+        neustat[2].pop(neustat[2].index(schn))
+        neustat[1].append(schn)
+        neustat[3]+=agenten[schn]
+        neustat[4].append("<"+schn)
         zuzeit=untere_schranke(neustat[1])
         if neustat[3]+zuzeit<=maxval:
             neuer_stat(neustat)
         else:
             pass
-##            print "Ausgeschlossener Status:"
-##            print neustat
-##            print "Zuzeit:"
-##            print zuzeit
-##            print "\n"
+
+
+
+        
+
     return()
 
 #Berechnet für den Status einen abgeschätzten Wert, der garantiert schneller ist

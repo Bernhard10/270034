@@ -2,6 +2,8 @@
 \section{Escape From Zurg: The Original}
 
 \begin{code}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeSynonymInstances #-}
 module Orig where
 
 import Data.List

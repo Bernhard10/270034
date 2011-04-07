@@ -1,0 +1,62 @@
+Liebe APBC-ler/innen,
+
+Diesmal sind 2 Aufgaben zu loesen:
+
+(1) Manhatten Tourist Problem: Das Stassennetz von Manhatten kann als
+    gewichtetes Gitter aufgefasst werden, wobei die Gewichte an den Kanten
+    des Gitters die Zahl an Sehenswuerdigkeiten angibt, die entlang dieses
+    Straszenstuecks zu sehen sind. Das Manhatten Tourist Problem besteht
+    nun darin, den Path mit dem maximalen Gesammtgewicht zu finden der in
+    der linken oberen Ecke des Gitters startet und in der rechten unteren
+    Ecke endet.
+
+       start here
+       |
+       v
+       +--3--+--3--+ 
+       |     |     | 
+       1     0     2
+       |     |     | 
+       +--3--+--2--+ 
+       |     |     | 
+       4     6     5 
+       |     |     | 
+       +--0--+--7--+
+                   ^
+		   |
+		   end here
+
+     Das Program soll 2 Matrizen mit den Gewichten des Gitters in West-Ost
+     und Nord-Sued Richtung einlesen. Sprich fuer das obige Beispielgitter
+     sieht der Input wie folgt aus:
+
+     # west-east streets
+     3 3
+     3 2
+     0 7
+
+     # north-south streets
+     1 0 2
+     4 6 5
+
+(2) Wechselgeld Problem: Ein Kunde bezahlt mit einem Geldschein. Das
+    Restgeld wird vom Kassier in Muenzen herausgegeben. Das Wechselgeld
+    Problem besteht nun darin bei einer gegebenen Stuckelung an Muenzen dem
+    Kunden das Restgeld in der geringsten Anzahl an Muenzen herauszugeben.
+    zB Preis 4.23 Euro; Kunde zahlt mit 5 Euro Schein; Muenzenstueckelung
+    ist 1, 2, 5, 10, 20, 50 Centmuenzen.
+    Rueckgeld 1 x 50 ct,
+              1 x 20 ct,
+	      1 x  5 ct,
+	      1 X  2 ct  (Kunde ist gluecklicht!)
+
+    Rueckgeld 77 x 1 ct (der Kunde tobt!!!)
+
+    Das Program soll als command-line-option den Restgeldbetrag und die
+    Muenzstueckelung nehmen und als Output die optimale Zahl an
+    Wechselmuenzen, sowie wieviele Stueck von welcher Muenzsorte gebraucht
+    werden liefern.
+                  
+Beide Aufgaben sollen mittels Dynamik Programming geloest werden.
+
+happy hacking

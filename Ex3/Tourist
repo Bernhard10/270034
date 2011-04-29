@@ -1,0 +1,22 @@
+﻿
+import sys
+
+mode=-1
+streets=[[],[]] #0 für E-->W, 1 für N-->S
+
+# Straßen einlesen
+for line in sys.stdin:
+    if line=="# west-east streets":
+        mode=0
+    elif line=="# west-east streets":
+        mode=1
+    else:
+        zeile=[]
+        stri=""
+        for ch in line:
+            if ch!=" ":
+                stri.append(ch)
+            else:
+                zeile.append 
+        streets[mode].append(zeile)
+
